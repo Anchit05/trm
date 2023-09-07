@@ -10,3 +10,15 @@ Solution:
 - So, thought of formatting the balance key, in the addresses data. For that created a weiToEther
   function which will take care of the conversion. Create a helper file and put that function There
   so that it can be used, anywhere in the project.
+
+
+  2.) User story(Refactor Saga)
+
+  Solution:
+
+  - First looked for repetition of code and tried to accumulate it in one function
+  - Reduced the two api call functions, so that if someone wants to add more functions 
+    can do it easily, without thinking of how the whole thing is working behind.
+  - Create the apiRequest in a separate file, so that it can used in multiple sagas.
+
+  
