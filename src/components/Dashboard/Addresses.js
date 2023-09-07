@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Col, Table } from 'antd';
+import { weiToEther } from '../../utils/commonHelper';
 
 const columns = [
   {
@@ -24,11 +25,20 @@ const DashboardAddresses = memo(({ setSelectedAddress }) => {
     [setSelectedAddress]
   );
 
+  /**
+   * this is used to format the balance coming inside addresses
+   * rest of the fields will remain same
+   */
+  const formattedAddresses = addresses?.map(address => ({
+    ...address,
+    balance: weiToEther(address.balance),
+  }));
+
   return (
     <Col span={24}>
       <Table
         columns={columns}
-        dataSource={addresses || []}
+        dataSource={formattedAddresses || []}
         rowKey="address"
         onRow={record => ({
           onClick: () => onAddressClick(record),

@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import Router from './components/Router';
-import configureStore from './redux/wrong';
+import configureStore from './redux/configureStore';
 
 const { store } = configureStore();
 
