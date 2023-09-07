@@ -29,3 +29,13 @@ Solution:
   - Then looked into the documentation of ant design on how to put multiple validation on Form input
     and then looked into the solution of how to do it.
   - Created a common isAddressField which can used over the project, to validate any kind of addresses.
+
+  4.) User Story(Pagination for transactions table)
+
+  Solution:
+  - First, saw how the data flow was and what params, were we sending to get the list
+  - The page key is used, to get the data, so passed the pageVal, from the component, to get
+    next page values
+  - As we don't know the total transactions, so lazy loading concept is used.
+  - Created a load more button, on click of which next 10 records, will be fetched and if
+    no records are left, load more button is removed.

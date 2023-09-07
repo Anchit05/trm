@@ -18,6 +18,7 @@ function* loadAddressBalance({ payload, type }) {
 }
 
 function* loadAddressTransactions({ payload, type }) {
+  console.log("payload: ", payload);
   yield call(apiRequest, {
     payload,
     type,
