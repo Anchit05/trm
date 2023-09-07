@@ -5,6 +5,7 @@ import { Button, Col, Form, Input, message } from 'antd';
 
 import { ADDRESS_BALANCE, requestAddressBalance } from '../../redux/actions';
 import { STATUS_ERROR, STATUS_LOADING } from '../../constants/redux';
+import { isAddressValid } from '../../utils/commonHelper';
 
 const { useForm } = Form;
 
@@ -19,8 +20,10 @@ const DashboardSearch = memo(() => {
   // which adds the address to our Addresses list upon success
   const onSubmit = useCallback(
     ({ address }) => {
-      dispatch(requestAddressBalance({ address }));
-      form.resetFields();
+      if (isAddressValid(address, 'ETH')) {
+        dispatch(requestAddressBalance({ address }));
+        form.resetFields();
+      }
     },
     [dispatch, form]
   );
@@ -40,7 +43,20 @@ const DashboardSearch = memo(() => {
         <Form.Item
           className="input-address"
           name="address"
-          rules={[{ required: true, message: 'Please enter an address' }]}
+          rules={[
+            { required: true, message: 'Please enter an address' },
+            {
+              validator: (_, value) => {
+                if (!value) {
+                  return Promise.resolve(); // Empty field, no validation needed
+                }
+                if (isAddressValid(value, 'ETH')) {
+                  return Promise.resolve(); // Valid address
+                }
+                return Promise.reject('Invalid address. Please enter a valid ETH address.');
+              },
+            },
+          ]}
         >
           <Input placeholder="ETH Address" />
         </Form.Item>

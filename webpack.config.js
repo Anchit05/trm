@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const Buffer = require('buffer/').Buffer;
+const webpack = require('webpack');
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
@@ -23,10 +25,18 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    fallback: {
+        buffer: require.resolve('buffer/'),
+    },
+  },
   plugins: [
     new Dotenv(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
+    }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
     }),
   ],
 };

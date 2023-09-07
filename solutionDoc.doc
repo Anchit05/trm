@@ -21,4 +21,11 @@ Solution:
     can do it easily, without thinking of how the whole thing is working behind.
   - Create the apiRequest in a separate file, so that it can used in multiple sagas.
 
-  
+  3.) User story(validating ETH address)
+
+  Solution:
+  - Looked into the documentation of the links provide and setup the packages and webpack configs
+  - Tested if the function is working correctly or not
+  - Then looked into the documentation of ant design on how to put multiple validation on Form input
+    and then looked into the solution of how to do it.
+  - Created a common isAddressField which can used over the project, to validate any kind of addresses.
