@@ -7,6 +7,11 @@ const webpack = require('webpack');
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
   mode: 'development',
+  output: {
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
@@ -39,4 +44,7 @@ module.exports = {
       Buffer: ['buffer', 'Buffer'],
     }),
   ],
+  devServer: {
+    historyApiFallback: true, // Enable HTML5 History API for client-side routing
+  },
 };

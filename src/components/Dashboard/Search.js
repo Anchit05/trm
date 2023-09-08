@@ -9,7 +9,7 @@ import { isAddressValid } from '../../utils/commonHelper';
 
 const { useForm } = Form;
 
-const DashboardSearch = memo(() => {
+const DashboardSearch = memo(({paramAddress}) => {
   const dispatch = useDispatch();
   const [form] = useForm();
 
@@ -23,10 +23,18 @@ const DashboardSearch = memo(() => {
       if (isAddressValid(address, 'ETH')) {
         dispatch(requestAddressBalance({ address }));
         form.resetFields();
+        window.history.pushState({}, null, `/address/${address}`);
       }
     },
     [dispatch, form]
   );
+
+  /**
+   * This will get trigered, when we will get address from url
+   */
+  useEffect(() => {
+    paramAddress && onSubmit({ address: paramAddress });
+  }, [paramAddress])
 
   // display a message if our request errors
   useEffect(() => {

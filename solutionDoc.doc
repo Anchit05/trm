@@ -1,41 +1,47 @@
-1.) User story(Wei to Eth)
+User Story 1 (Wei to Eth) - Solution:
 
-Solution:
+- Initially, I reviewed the provided links to find information about converting Wei to Eth.
+- Next, I explored the documentation of BigNumber.js to identify relevant methods for this 
+  conversion.
+- Upon analyzing the component, I examined how the address data was structured. The addresses data 
+  was in the form of an array of objects, with each object containing 'address' and 'balance' keys.
+- To format the 'balance' key in the addresses data, I created a 'weiToEther' function that 
+  handles the conversion. I placed this function in a helper file to make it accessible 
+  throughout the project.
 
-- First checked the links provided and looked for the conversion from Wei to Eth
-- Then checked the documentation of BigNumber.js and found the methods that can useful
-- After analysing the component then checked how the addresses data is coming, as in the 
-  addresses data the object was coming in array of objects form where object has 'address' and 
-  'balance' keys.
-- So, thought of formatting the balance key, in the addresses data. For that created a weiToEther
-  function which will take care of the conversion. Create a helper file and put that function There
-  so that it can be used, anywhere in the project.
+User Story 2 (Refactor Saga) - Solution:
 
+- I began by searching for code repetitions and aimed to consolidate them into a single function.
+- I reduced the number of API call functions to enhance modularity, making it easier to add more 
+  functions in the future without concerns about the underlying logic.
+- I created an 'apiRequest' function in a separate file to allow its reuse across multiple sagas.
 
-  2.) User story(Refactor Saga)
+User Story 3 (Validating ETH Address) - Solution:
 
-  Solution:
+- I examined the documentation provided in the links and configured the necessary packages 
+  and webpack settings.
+- I validated that the address validation function was functioning correctly.
+- I referred to the Ant Design documentation to learn how to apply multiple validations to a Form
+  input and implemented the solution accordingly.
+- I developed a common 'isAddressField' function that can be used universally across the project 
+  to validate various types of addresses.
 
-  - First looked for repetition of code and tried to accumulate it in one function
-  - Reduced the two api call functions, so that if someone wants to add more functions 
-    can do it easily, without thinking of how the whole thing is working behind.
-  - Create the apiRequest in a separate file, so that it can used in multiple sagas.
+User Story 4 (Pagination for Transactions Table) - Solution:
 
-  3.) User story(validating ETH address)
+- Initially, I assessed the data flow and the parameters used to retrieve the transaction list.
+- I observed that the 'page' parameter was employed to retrieve data, so I passed the 'pageVal' 
+  from the component to fetch the next page values.
+- Due to the unknown total number of transactions, I implemented lazy loading. I added a 
+  "Load More" button that, when clicked, fetches the next 10 records. If no more records are 
+  available, the button is removed.
 
-  Solution:
-  - Looked into the documentation of the links provide and setup the packages and webpack configs
-  - Tested if the function is working correctly or not
-  - Then looked into the documentation of ant design on how to put multiple validation on Form input
-    and then looked into the solution of how to do it.
-  - Created a common isAddressField which can used over the project, to validate any kind of addresses.
+User Story 5 (Updation of URL and Data Fetching) - Solution:
 
-  4.) User Story(Pagination for transactions table)
-
-  Solution:
-  - First, saw how the data flow was and what params, were we sending to get the list
-  - The page key is used, to get the data, so passed the pageVal, from the component, to get
-    next page values
-  - As we don't know the total transactions, so lazy loading concept is used.
-  - Created a load more button, on click of which next 10 records, will be fetched and if
-    no records are left, load more button is removed.
+- The first challenge I encountered was that the URL wasn't functioning correctly, which required
+  adjustments in webpack to resolve. I researched the issue and applied the necessary fixes.
+- Another challenge was updating the URL when a user searches for an address, without causing 
+  React to trigger a re-render. This was essential to ensure that only the necessary data was
+  fetched when the URL changed. I addressed this by using JavaScript to update the URL accordingly.
+- I made modifications to the components by reading the URL parameters and managing the API calls 
+  to display the data. Additionally, I handled scenarios where an incorrect address in the URL 
+  triggers an alert.
